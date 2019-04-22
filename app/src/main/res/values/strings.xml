@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">TicTacToe</string>
     <string name="title_activity_game">GameActivity</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_start_session">Start session</string>
 </resources>
