@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
-        tools:context=".LoginActivity">
+        tools:context=".activities.LoginActivity">
 
     <ProgressBar
             android:id="@+id/progressBarLogin"
@@ -48,8 +48,7 @@
                     android:layout_marginTop="16dp"
                     android:ems="10"
                     android:hint="@string/login_password_hint"
-
-            />
+                    android:inputType="textPassword"/>
 
             <Button
                     android:id="@+id/buttonLogin"
@@ -58,6 +57,15 @@
                     android:layout_marginTop="16dp"
                     android:background="@color/colorPrimary"
                     android:text="@string/login_start_session"
+                    android:textColor="@android:color/white"/>
+
+            <Button
+                    android:id="@+id/buttonRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/login_go_to_register"
                     android:textColor="@android:color/white"/>
 
         </LinearLayout>

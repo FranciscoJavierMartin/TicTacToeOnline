@@ -10,15 +10,15 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
-                android:name=".GameActivity"
+                android:name=".activities.GameActivity"
                 android:label="@string/title_activity_game"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".SearchGameActivity">
+        <activity android:name=".activities.SearchGameActivity">
         </activity>
-        <activity android:name=".RegisterActivity">
+        <activity android:name=".activities.RegisterActivity">
         </activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

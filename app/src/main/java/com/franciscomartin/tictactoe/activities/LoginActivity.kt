@@ -1,8 +1,10 @@
-package com.franciscomartin.tictactoe
+package com.franciscomartin.tictactoe.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.franciscomartin.tictactoe.R
+import com.franciscomartin.tictactoe.goToActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -20,6 +22,11 @@ class LoginActivity : AppCompatActivity() {
             changeLoginFormVisibility(false)
 
         }
+
+        buttonRegister.setOnClickListener {
+            goToActivity<RegisterActivity>()
+        }
+
     }
 
     private fun changeLoginFormVisibility(showForm: Boolean){
