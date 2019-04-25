@@ -18,4 +18,5 @@
     <string name="login_password_error_empty">Password is mandatory</string>
     <string name="login_password_error_length">Password must has at least 6 characters</string>
     <string name="register_error_on_register">Error on register</string>
+    <string name="search_game_loading">Loading...</string>
 </resources>
