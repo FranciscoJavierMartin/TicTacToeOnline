@@ -9,4 +9,13 @@
     <string name="register_password_hint">Password</string>
     <string name="register_button_register">Register</string>
     <string name="login_go_to_register">Create account</string>
+    <string name="register_name_error_length">Name must contains at least 3 characters and 15 like maximun</string>
+    <string name="register_name_error_empty">Name is mandatory</string>
+    <string name="register_email_error_empty">Email is mandatory</string>
+    <string name="register_password_error_length">Password is mandatory</string>
+    <string name="register_password_error_empty">Password is mandatory</string>
+    <string name="login_email_error_empty">Email is mandatory</string>
+    <string name="login_password_error_empty">Password is mandatory</string>
+    <string name="login_password_error_length">Password must has at least 6 characters</string>
+    <string name="register_error_on_register">Error on register</string>
 </resources>
