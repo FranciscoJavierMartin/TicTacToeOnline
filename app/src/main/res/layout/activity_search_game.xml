@@ -8,28 +8,95 @@
         android:padding="16dp"
         tools:context=".activities.SearchGameActivity">
 
-    <TextView
-            android:id="@+id/textViewLoading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="@string/search_game_loading"
-            app:layout_constraintBottom_toTopOf="@id/progressBarSearchGames"
-            app:layout_constraintEnd_toEndOf="@id/progressBarSearchGames"
-            app:layout_constraintStart_toStartOf="@id/progressBarSearchGames"/>
-
-    <ProgressBar
-            android:id="@+id/progressBarSearchGames"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="0dp"
+    <ScrollView
+            android:id="@+id/layoutProgressBar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/textViewLoading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/search_game_loading"
+                    app:layout_constraintBottom_toTopOf="@id/progressBarSearchGames"
+                    app:layout_constraintEnd_toEndOf="@id/progressBarSearchGames"
+                    app:layout_constraintStart_toStartOf="@id/progressBarSearchGames"/>
+
+            <ProgressBar
+                    android:id="@+id/progressBarSearchGames"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ScrollView
+            android:id="@+id/gameMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/ic_tic_tac_toe"/>
+
+            <Button
+                    android:id="@+id/buttonPlay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:drawableLeft="@drawable/ic_console"
+                    android:padding="16dp"
+                    android:text="@string/search_game_button_play"/>
+
+            <Button
+                    android:id="@+id/buttonRanking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/colorAccent"
+                    android:drawableLeft="ic_rank"
+                    android:padding="16dp"
+                    android:text="@string/search_game_button_ranking"/>
+        </LinearLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
