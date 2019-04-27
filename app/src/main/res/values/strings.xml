@@ -30,4 +30,7 @@
     <string name="game_player1">Player 1</string>
     <string name="game_player2">Player 2</string>
     <string name="game_error_on_get_data">Error on get data from server</string>
+    <string name="game_game_has_end">Game has ended</string>
+    <string name="game_it_not_your_turn">It is not your turn yet</string>
+    <string name="game_select_an_empty_cell">Select an empty cell</string>
 </resources>

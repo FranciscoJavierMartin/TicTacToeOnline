@@ -1,6 +1,7 @@
 package com.franciscomartin.tictactoe.activities
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.franciscomartin.tictactoe.R
@@ -57,6 +58,21 @@ class GameActivity : AppCompatActivity() {
         super.onStop()
     }
 
+    fun selectedCell(view: View){
+        if(!game.winnerID.isEmpty()){
+            Toast.makeText(this, R.string.game_game_has_end, Toast.LENGTH_LONG)
+        } else {
+
+            if(game.player1Turn && game.player1ID == uid) {
+                updateGame(view.tag.toString())
+            } else if(!game.player1Turn && game.player2ID == uid){
+                updateGame(view.tag.toString())
+            } else {
+                Toast.makeText(this, R.string.game_it_not_your_turn, Toast.LENGTH_LONG)
+            }
+        }
+    }
+
     private fun initGameListener(){
         gameListener = firestore.collection(Constants.GAMES_COLLECTION)
             .document(gameID)
@@ -101,6 +117,23 @@ class GameActivity : AppCompatActivity() {
                 playerTwoName = it.get(Constants.USERS_FIELD_NAME).toString()
                 textViewPlayer2.text = playerTwoName
             }
+    }
+
+    private fun updateGame(cellNumber: String){
+        val cellPosition = Integer.parseInt(cellNumber)
+
+        if(game.selectedCells.get(cellPosition) != 0){
+            Toast.makeText(this, R.string.game_select_an_empty_cell, Toast.LENGTH_LONG)
+        } else {
+            if(game.player1Turn){
+                this.cells[cellPosition].setImageResource(R.drawable.ic_player_one)
+                game.selectedCells[cellPosition] =  1
+            } else {
+                this.cells[cellPosition].setImageResource(R.drawable.ic_player_two)
+                game.selectedCells[cellPosition] =  2
+            }
+        }
+
     }
 
 }
