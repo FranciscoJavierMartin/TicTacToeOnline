@@ -1,5 +1,6 @@
 package com.franciscomartin.tictactoe.activities
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -92,7 +93,11 @@ class GameActivity : AppCompatActivity() {
                                 getPlayerNames()
                             }
 
+                            updateUI()
+
                         }
+
+                        changeColorPlayerTextView()
 
                     }
 
@@ -125,15 +130,51 @@ class GameActivity : AppCompatActivity() {
         if(game.selectedCells.get(cellPosition) != 0){
             Toast.makeText(this, R.string.game_select_an_empty_cell, Toast.LENGTH_LONG)
         } else {
-            if(game.player1Turn){
+            if (game.player1Turn) {
                 this.cells[cellPosition].setImageResource(R.drawable.ic_player_one)
-                game.selectedCells[cellPosition] =  1
+                game.selectedCells[cellPosition] = 1
             } else {
                 this.cells[cellPosition].setImageResource(R.drawable.ic_player_two)
-                game.selectedCells[cellPosition] =  2
+                game.selectedCells[cellPosition] = 2
+            }
+
+            changeTurn()
+
+            firestore.collection(Constants.GAMES_COLLECTION)
+                .document(gameID)
+                .set(game)
+                .addOnSuccessListener(this) {
+
+                }.addOnFailureListener(this) {
+                    // TODO: Make something for tell to user that error happens
+                }
+        }
+
+    }
+
+    private fun changeTurn(){
+        game.player1Turn = !game.player1Turn
+    }
+
+    private fun updateUI() {
+
+        game.selectedCells.forEach { cell ->
+            when(cell){
+                0 -> cells[cell].setImageResource(R.drawable.ic_empty_square)
+                1 -> cells[cell].setImageResource(R.drawable.ic_player_one)
+                2 -> cells[cell].setImageResource(R.drawable.ic_player_two)
             }
         }
 
     }
 
+    private fun changeColorPlayerTextView() {
+        if(game.player1Turn){
+            textViewPlayer1.setTextColor(resources.getColor(R.color.colorPrimary))
+            textViewPlayer2.setTextColor(resources.getColor(R.color.colorOtherPlaying))
+        } else {
+            textViewPlayer1.setTextColor(resources.getColor(R.color.colorOtherPlaying))
+            textViewPlayer2.setTextColor(resources.getColor(R.color.colorAccent))
+        }
+    }
 }
