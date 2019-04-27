@@ -65,7 +65,7 @@ class RegisterActivity : AppCompatActivity() {
             firestore.collection(Constants.USERS_COLLECTION)
                 .document(user.uid)
                 .set(User(name,0,0))
-                .addOnSuccessListener {
+                .addOnSuccessListener(this) {
                     changeRegisterFormVisibility(true)
                     finish()
                     goToActivity<SearchGameActivity> ()

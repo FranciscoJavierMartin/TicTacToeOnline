@@ -61,7 +61,7 @@ class SearchGameActivity : AppCompatActivity() {
             firestore.collection(Constants.GAMES_COLLECTION)
                 .document(gameID)
                 .delete()
-                .addOnCompleteListener {
+                .addOnCompleteListener(this){
                     gameID = ""
                 }
         }
@@ -91,7 +91,7 @@ class SearchGameActivity : AppCompatActivity() {
         firestore.collection(Constants.GAMES_COLLECTION)
             .whereEqualTo( Constants.GAMES_FIELD_PLAYER2_ID, "")
             .get()
-            .addOnCompleteListener {
+            .addOnCompleteListener(this){
 
                 if(it.result!!.isEmpty){
                     createNewGame()
@@ -111,9 +111,9 @@ class SearchGameActivity : AppCompatActivity() {
                         firestore.collection(Constants.GAMES_COLLECTION)
                             .document(gameID)
                             .set(game)
-                            .addOnSuccessListener {
+                            .addOnSuccessListener(this){
                                 this.playAnimationAndStartGame()
-                            }.addOnFailureListener {
+                            }.addOnFailureListener(this){
                                 changeMenuVisibility(true)
                                 Toast.makeText(this, R.string.search_game_error_to_enter_on_a_game, Toast.LENGTH_LONG)
                             }
@@ -130,10 +130,10 @@ class SearchGameActivity : AppCompatActivity() {
 
         firestore.collection(Constants.GAMES_COLLECTION)
             .add(newGame)
-            .addOnSuccessListener {
+            .addOnSuccessListener(this){
                 gameID = it.id
                 waitToStartGame()
-            }.addOnFailureListener {
+            }.addOnFailureListener(this){
                 changeMenuVisibility(true)
                 Toast.makeText(this, R.string.search_game_error_on_creating_game, Toast.LENGTH_LONG)
             }
@@ -157,7 +157,7 @@ class SearchGameActivity : AppCompatActivity() {
 
         listenerRegistration = firestore.collection(Constants.GAMES_COLLECTION)
             .document(gameID)
-            .addSnapshotListener { documentSnapshot, _ ->
+            .addSnapshotListener(this){ documentSnapshot, _ ->
                 if(documentSnapshot!!.get(Constants.GAMES_FIELD_PLAYER2_ID)!! == ""){
                     this.playAnimationAndStartGame()
                 }

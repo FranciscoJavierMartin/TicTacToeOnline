@@ -29,4 +29,5 @@
     <string name="search_game_start_game">Player found. Starting game</string>
     <string name="game_player1">Player 1</string>
     <string name="game_player2">Player 2</string>
+    <string name="game_error_on_get_data">Error on get data from server</string>
 </resources>
