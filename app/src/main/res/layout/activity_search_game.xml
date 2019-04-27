@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content">
 
             <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/animation_view"
+                    android:id="@+id/animationView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -37,7 +37,7 @@
                     app:lottie_autoPlay="true"/>
 
             <TextView
-                    android:id="@+id/textViewLoading"
+                    android:id="@+id/textViewLoadingMessage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

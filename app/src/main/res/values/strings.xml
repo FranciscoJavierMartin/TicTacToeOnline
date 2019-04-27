@@ -21,4 +21,10 @@
     <string name="search_game_loading">Loading...</string>
     <string name="search_game_button_play">Play online</string>
     <string name="search_game_button_ranking">Show ranking</string>
+    <string name="search_game_search_available_game">Searching available game</string>
+    <string name="search_game_error_to_enter_on_a_game">Some error happens to enter on a game</string>
+    <string name="search_game_creating_new_game">Creating new game</string>
+    <string name="search_game_error_on_creating_game">Error on creating game</string>
+    <string name="search_game_waiting_another_player">Waiting to another player</string>
+    <string name="search_game_start_game">Player found. Starting game</string>
 </resources>
