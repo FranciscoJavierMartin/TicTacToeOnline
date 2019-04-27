@@ -6,6 +6,7 @@ object Constants {
     val GAMES_COLLECTION = "games"
 
     // Fields names
+    val GAMES_FIELD_PLAYER1_ID = "player1ID"
     val GAMES_FIELD_PLAYER2_ID = "player2ID"
 
     // Extras

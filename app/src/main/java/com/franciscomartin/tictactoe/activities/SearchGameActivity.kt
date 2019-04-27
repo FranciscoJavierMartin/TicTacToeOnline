@@ -31,19 +31,42 @@ class SearchGameActivity : AppCompatActivity() {
         this.changeMenuVisibility(true)
 
         buttonPlay.setOnClickListener{
-            this.playGame()
+            this.searchAvailableGame()
         }
 
         buttonRanking.setOnClickListener {
 
         }
 
-
     }
 
     override fun onResume() {
         super.onResume()
-        this.changeMenuVisibility(true)
+
+        if(gameID != ""){
+            this.changeMenuVisibility(false)
+            waitToStartGame()
+        } else{
+            this.changeMenuVisibility(true)
+        }
+
+    }
+
+    override fun onStop() {
+        if(listenerRegistration != null){
+            listenerRegistration!!.remove()
+        }
+
+        if(gameID != ""){
+            firestore.collection(Constants.GAMES_COLLECTION)
+                .document(gameID)
+                .delete()
+                .addOnCompleteListener {
+                    gameID = ""
+                }
+        }
+
+        super.onStop()
     }
 
     private fun changeMenuVisibility(showMenu: Boolean){
@@ -60,8 +83,9 @@ class SearchGameActivity : AppCompatActivity() {
         }
     }
 
-    private fun playGame(){
+    private fun searchAvailableGame(){
         this.changeMenuVisibility(false)
+        animationView.playAnimation()
 
         textViewLoadingMessage.text = getString(R.string.search_game_search_available_game)
         firestore.collection(Constants.GAMES_COLLECTION)
@@ -69,23 +93,33 @@ class SearchGameActivity : AppCompatActivity() {
             .get()
             .addOnCompleteListener {
 
-                if(it.result?.size() == 0){
+                if(it.result!!.isEmpty){
                     createNewGame()
                 } else {
-                    val docGame = it.result?.documents!!.first()
-                    gameID = docGame.id
-                    val game = docGame.toObject(Game::class.java)
-                    game!!.player2ID = uid
 
-                    firestore.collection(Constants.GAMES_COLLECTION)
-                        .document(gameID)
-                        .set(game)
-                        .addOnSuccessListener {
-                            this.playAnimationAndStartGame()
-                        }.addOnFailureListener {
-                            changeMenuVisibility(true)
-                            Toast.makeText(this, R.string.search_game_error_to_enter_on_a_game, Toast.LENGTH_LONG)
-                        }
+                    val listGames = it.result?.documents!!
+                        .filter { document -> document.get(Constants.GAMES_FIELD_PLAYER1_ID) != uid }
+
+                    if (listGames.isEmpty()) {
+                        createNewGame()
+                    } else {
+                        val docGame = listGames.first()
+                        gameID = docGame.id
+                        val game = docGame.toObject(Game::class.java)
+                        game!!.player2ID = uid
+
+                        firestore.collection(Constants.GAMES_COLLECTION)
+                            .document(gameID)
+                            .set(game)
+                            .addOnSuccessListener {
+                                this.playAnimationAndStartGame()
+                            }.addOnFailureListener {
+                                changeMenuVisibility(true)
+                                Toast.makeText(this, R.string.search_game_error_to_enter_on_a_game, Toast.LENGTH_LONG)
+                            }
+                    }
+
+
                 }
             }
     }
@@ -114,6 +148,8 @@ class SearchGameActivity : AppCompatActivity() {
         goToActivity<GameActivity>{
             putExtra(Constants.SEARCH_GAME_EXTRA_GAMEID, gameID)
         }
+
+        gameID = ""
     }
 
     private fun waitToStartGame(){
