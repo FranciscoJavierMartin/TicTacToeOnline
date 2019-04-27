@@ -27,4 +27,6 @@
     <string name="search_game_error_on_creating_game">Error on creating game</string>
     <string name="search_game_waiting_another_player">Waiting to another player</string>
     <string name="search_game_start_game">Player found. Starting game</string>
+    <string name="game_player1">Player 1</string>
+    <string name="game_player2">Player 2</string>
 </resources>
