@@ -13,5 +13,11 @@ object Constants {
 
     // Extras
     val SEARCH_GAME_EXTRA_GAMEID = "gameID"
+
+    // Winner
+    val DRAW = "draw"
+    val DRAW_POINTS = 1
+    val WIN_POINTS = 3
+
 }
 

@@ -33,4 +33,11 @@
     <string name="game_game_has_end">Game has ended</string>
     <string name="game_it_not_your_turn">It is not your turn yet</string>
     <string name="game_select_an_empty_cell">Select an empty cell</string>
+    <string name="game_game_over_dialog_title">Game over</string>
+    <string name="game_game_over_dialog_possitive_button_text">Exit</string>
+    <string name="game_game_over_dialog_one_points">+1 points</string>
+    <string name="game_game_over_dialog_more_points">+%1$d points</string>
+    <string name="game_game_over_information_draw">%1$s has tied and got %2$d</string>
+    <string name="game_game_over_information_win">%1$s has won and got %2$d</string>
+    <string name="game_game_over_information_lose">%1$s has lost</string>
 </resources>
