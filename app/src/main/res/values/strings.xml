@@ -40,4 +40,7 @@
     <string name="game_game_over_information_draw">%1$s has tied and got %2$d</string>
     <string name="game_game_over_information_win">%1$s has won and got %2$d</string>
     <string name="game_game_over_information_lose">%1$s has lost</string>
+    <string name="game_other_player_has_surrendered">The other player has
+        surrendered. You win.
+    </string>
 </resources>

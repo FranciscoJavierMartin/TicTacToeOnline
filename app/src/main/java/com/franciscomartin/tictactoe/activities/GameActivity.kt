@@ -1,5 +1,6 @@
 package com.franciscomartin.tictactoe.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.franciscomartin.tictactoe.R
 import com.franciscomartin.tictactoe.commons.Constants
+import com.franciscomartin.tictactoe.goToActivity
 import com.franciscomartin.tictactoe.models.Game
 import com.franciscomartin.tictactoe.models.User
 import com.google.firebase.auth.FirebaseAuth
@@ -49,6 +51,20 @@ class GameActivity : AppCompatActivity() {
 
         gameID = intent.extras.getString(Constants.SEARCH_GAME_EXTRA_GAMEID)
 
+        floatingExitButton.setOnClickListener {
+            // TODO: Set the user lose the game
+            game.surrenderID = uid
+
+            firestore.collection(Constants.GAMES_COLLECTION)
+                .document(gameID)
+                .set(game)
+                .addOnSuccessListener(this){
+                    // TODO: Notify
+                }.addOnFailureListener(this){
+
+                }
+
+        }
     }
 
     override fun onStart() {
@@ -192,6 +208,26 @@ class GameActivity : AppCompatActivity() {
 
         if(game.winnerID.isNotEmpty()){
             showDialogGameOver()
+        }
+
+        if(game.surrenderID != uid && game.surrenderID.isNotEmpty()){
+            // TODO: Show that rival has been surrended
+            Toast.makeText(this, R.string.game_other_player_has_surrendered, Toast.LENGTH_LONG)
+
+            firestore.collection(Constants.GAMES_COLLECTION)
+                .document(gameID)
+                .set(game)
+                .addOnSuccessListener(this){
+                    // TODO: Add a dialog to say that rival has surrended
+                    goToActivity<SearchGameActivity> {
+                        flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                    }
+                    finish()
+                }.addOnFailureListener(this){
+
+                }
+
+
         }
     }
 
